@@ -1,0 +1,89 @@
+Import java.util.*;  
+  
+ 
+class ATMMACHINE
+{   
+    int pin = 48072; int Balance=50000;
+    Scanner s = new Scanner(System.in);
+    ATMMACHINE()
+    {
+    System.out.print("Enter your pin no:- ");
+    int userpin= s.nextInt();
+    
+    if(userpin ==pin)
+    {
+        System.out.println("\nLogin Successfull..Welcome sir!!!");
+        ATMmachinemenu();
+    }
+    else
+    {
+        System.out.println("Invalid pin");
+       
+       new ATMMACHINE();
+    }
+  }
+    
+    public void ATMmachinemenu()
+    {
+       System.out.println("\nChoose an option from the given ..");
+       System.out.println("1. Check Balance");
+       System.out.println("2. Withdraw Money");
+       System.out.println("3. Deposit Money");
+       System.out.println("4. Exit");
+       System.out.print("\nEnter your choice = ");
+       int option = s.nextInt();
+       
+       switch(option)
+       {
+           case 1 : Checkthebalance(); 
+           break;
+           case 2 : Withdraw();
+           break;
+           case 3 : Deposit();
+           break;
+           case 4 : System.exit(0);
+           default : System.out.println("\nPlease choose valid Option !");
+           ATMmachinemenu();
+       }
+    }
+
+    public void Checkthebalance()
+    {
+        System.out.println("Your Current Balance = "+Balance);
+        ATMmachinemenu();
+    }
+    
+    public void Withdraw()
+    {
+        System.out.print("Enter amount =  ");
+         int amount = s.nextInt();
+         if(amount<=Balance) 
+         {
+             System.out.println("\nAmount Withdraw Succesfull ");
+             Balance = Balance - amount;
+             ATMmachinemenu();
+         }
+         else 
+         {
+             System.out.println("\nInsufficent Balance..!!");
+             ATMmachinemenu();
+         }
+    }
+    public void Deposit()
+    {
+        System.out.print("Enter amount :-");
+        int deposit = s.nextInt();
+        Balance = Balance + deposit;
+        System.out.println("\nAmount deposited Successfully..!!");
+        ATMmachinemenu();
+    }
+   
+}
+public class ATMcode
+{
+    public static void main(String args[])
+    {
+        System.out.println(" Welcome to the ATM MACHINE \n");
+        ATMMACHINE ATM= new ATMMACHINE();
+    }
+}
